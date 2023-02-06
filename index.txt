@@ -1,0 +1,42 @@
+label  class ="aname"for="aname">Article name:</label>
+        <input type="text" id="aname" name="aname">
+        <label  class ="adesc"for="adesc">Article Description:</label>
+        <input type="text" id="adesc" name="adesc">
+        <label  class ="acate"for="acate">Article Categorie:</label>
+        <input type="text" id="acate" name="acate" placeholder="Article"
+
+.aname {
+  position:absolute;
+  top:20px;
+  left:100px;
+}
+#aname {
+  position:absolute;
+  top:50px;
+  left:100px;
+
+}
+
+.adesc {
+  position:absolute;
+  top:100px;
+  left:100px;
+}
+#adesc {
+  position:absolute;
+  top:130px;
+  left:100px;
+
+}
+
+.acate {
+  position:absolute;
+  top:180px;
+  left:100px;
+}
+#acate {
+  position:absolute;
+  top:210px;
+  left:100px;
+
+}
