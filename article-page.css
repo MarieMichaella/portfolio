@@ -1,0 +1,49 @@
+
+.rectblog {
+  position:absolute;
+ height:58px;
+ left:0px;
+ width:100%;
+ top:10px;
+ background-color: #C8DBDC;
+ 
+ display: inline-block;
+ }
+
+   #article-name {
+     position:relative;
+     z-index: 1;
+     font-size: 50px; 
+     color:#C76A07;
+     left: 50px;
+     top:-20px;
+     font-weight: bold;
+   
+   }
+ 
+   a {
+ 
+     color: black;
+     background-color: transparent;
+     text-decoration: none;
+     
+   }
+
+   .article-picture {
+    position:relative;
+    position:center;
+    top:-30px;
+    left:125px;
+    width:1000px;
+    height:200px;
+    object-fit: cover;
+   }
+
+
+   #article-message {
+    position:absolute;
+    top:300px;
+    left:130px;
+    right:130px;
+    line-height:30px;
+   }

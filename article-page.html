@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Article Page</title>
+    <link rel="stylesheet" href="article-page.css">
+  </head>
+  <body>
+
+    <div class="blogpart">
+    
+        <div class="rectblog"></div>
+    
+       
+        <div class="scroll">
+            <div class="home"><a href="index.html"> <iconify-icon icon="material-symbols:arrow-back-ios-new" style="color: #c76a07;"></iconify-icon></a></div>
+    
+        </div>
+        <div id="article-container">
+   
+    
+   
+    <h1 id="article-name"></h1>
+    <p id="article-picture"></p>
+    <p id="article-message"></p>
+
+</div>
+
+    <script>
+        const articleName = localStorage.getItem('articleName');
+const articleMessage = localStorage.getItem('articleMessage');
+const articlePicture = localStorage.getItem('articlePicture');
+
+const articleNameElement = document.getElementById('article-name');
+const articleMessageElement = document.getElementById('article-message');
+const articlePictureElement = document.createElement('img');
+
+articleNameElement.textContent = articleName;
+articleMessageElement.textContent = articleMessage;
+
+articlePictureElement.src = articlePicture;
+articlePictureElement.alt = articleName;
+articlePictureElement.className = 'article-picture';
+
+const articleContainerElement = document.getElementById('article-container');
+articleContainerElement.appendChild(articlePictureElement);
+
+        </script>
+        
+  </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b88abec70f.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+      </style>
+    <title>MarieMichaellaMyPortfolio</title>
+    <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+    <section>
+        <span class="toprectangle"></span>
+       
+        <span class="rectangle"></span>
+        <div class="firstmenu">
+            <iconify-icon icon="iconoir:menu-scale"></iconify-icon>
+            </div>
+        <span class="rectangle3"></span>
+        
+        <div class="container">
+            
+            <div class="grid-container">
+            <div class="contact">Manage Users</div>
+            
+            </div>
+            
+           
+    
+            <div class="menu">
+                <span class="home">
+                    <a href="index.html">Home</a></span>
+    
+    <span class="dashboard">Dashboard</span>
+    
+    <span class="addblogs">
+        <a href="index2.html">Add Blogs</a>
+        
+    </span>
+    <span class="modifyblogs">
+        <a href="index3.html">Modify Blogs</a>
+    </span>
+    
+    <span class="manageusers">
+        <a href="index6.html">Manage Users</a>
+    </span>
+
+    <span class="logout">
+        <a href="index.html">Logout</a>
+    </span>
+    
+        <div class="search-box">
+            <input class="search-txt" type="text" name="" placeholder="Search">
+            <a class="search-btn" href="#">
+                <i class="fa-solid fa-magnifying-glass"></i>
+    
+            </a>
+        </div>
+    
+    </div>
+    
+    <div class="logomenu">
+            <iconify-icon icon="ic:baseline-home"></iconify-icon>
+            <iconify-icon class="dashicon" icon="material-symbols:dashboard"></iconify-icon></span>
+            <iconify-icon class="addicon" icon="ic:baseline-plus"></iconify-icon>
+            <iconify-icon class="modifyicon" icon="material-symbols:edit"></iconify-icon>
+            <iconify-icon class="manageusers" icon="mdi:users"></iconify-icon>
+            <iconify-icon icon="material-symbols:logout"></iconify-icon>
+        
+    </div>
+    </div>
+    
+    
+        
+    </div>
+    
+    </section>
+    <div class="rectangle5">
+        <p></p>
+    <span></span>
+
+    <table>
+        <tr>
+          <th>Username</th>
+
+          <th>User Email</th>
+         
+        </tr>
+        <span class="line"></span>
+      
+      </table>
+      
+    </div>
+<div id="user-List">
+
+</div>
+<div id="user-item">
+
+</div>
+     <script>
+                      
+
+
+
+
+const storedUsers = JSON.parse(localStorage.getItem('users'));
+const userList = document.getElementById('user-List');
+const userElements = [];
+
+storedUsers.forEach(user => {
+  const userElement = document.createElement('div');
+  userElement.className = 'user-item';
+  userElement.className = 'users';
+  userElement.innerHTML = `
+    <h4>${user.username}</h4>
+    <h4>${user.email}</h4>
+  `;
+  
+  const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.classList.add('my-button');
+  deleteButton.dataset.id = user.id;
+  deleteButton.addEventListener('click', () => {
+    const index = storedUsers.findIndex(u => u.id === user.id);
+    if (index !== -1) {
+      const confirmed = confirm(`Are you sure you want to delete ${user.username}?`);
+      if (confirmed) {
+      storedUsers.splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(storedUsers));
+      userElements[index].remove();
+      alert(`The user ${user.username} has been deleted`);
+      }
+      
+    }
+  });
+  
+  userElement.appendChild(deleteButton);
+  userElements.push(userElement);
+  userList.appendChild(userElement);
+});
+
+// add a click event listener to all delete buttons
+
+
+
+
+
+/*const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.classList.add('my-button');
+  deleteButton.addEventListener('click', () => {
+    const index = storedUsers.findIndex(a => a.username === users.username);
+    if (index !== -1) {
+      storedUsers.splice(index, 1);
+      localStorage.setItem('articles', JSON.stringify(storedUsers));
+      userElement.remove();
+    }
+  });*/
+
+                    </script>
+</body>
+</html>

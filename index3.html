@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b88abec70f.js" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+      </style>
+    <link rel="stylesheet" href="style3.css">
+    <title>MarieMichaellaMyPortfolio</title>
+</head>
+<body>
+    <section>
+    <span class="toprectangle"></span>
+   
+    <span class="rectangle"></span>
+    <div class="firstmenu">
+        <iconify-icon icon="iconoir:menu-scale"></iconify-icon>
+        </div>
+    <span class="rectangle3"></span>
+    
+    <div class="container">
+        
+        <div class="grid-container">
+        <div class="contact">Modify Blogs</div>
+        
+        </div>
+        
+       
+
+        <div class="menu">
+            <span class="home">
+                <a href="index.html">Home</a></span>
+
+<span class="dashboard"><a href="index1.html">Dashboard</a></span>
+
+<span class="addblogs">
+    <a href="index2.html">Add Blogs</a>
+    
+</span>
+<span class="modifyblogs">
+    <a href="index3.html">Modify Blogs</a>
+</span>
+
+<span class="managingusers">
+  <a href="index6.html">Manage Blogs</a>
+</span>
+
+<span class="logout">
+  <a href="index.html">Logout</a>
+</span>
+
+
+    <div class="search-box">
+        <input class="search-txt" type="text" name="" placeholder="Search">
+        <a class="search-btn" href="#">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+        </a>
+    </div>
+
+</div>
+
+<div class="logomenu">
+        <iconify-icon icon="ic:baseline-home"></iconify-icon>
+        <iconify-icon class="dashicon" icon="material-symbols:dashboard"></iconify-icon></span>
+        <iconify-icon class="addicon" icon="ic:baseline-plus"></iconify-icon>
+        <iconify-icon class="modifyicon" icon="material-symbols:edit"></iconify-icon>
+        <iconify-icon class="manageusers" icon="mdi:users"></iconify-icon>
+        <iconify-icon icon="material-symbols:logout"></iconify-icon>
+    
+</div>
+</div>
+
+</section>
+
+
+  
+
+  
+  
+  <section>
+    <div class="articles-container">
+      <div id="article-list"></div>
+   
+
+    <div id="gallery-item"></div>
+  </div>
+    <script>
+ const storedArticles = JSON.parse(localStorage.getItem('articles'));
+
+const articleList = document.getElementById('article-list');
+
+storedArticles.forEach(article => {
+  const articleElement = document.createElement('div');
+  articleElement.className = 'gallery-item';
+  articleElement.innerHTML = `
+    <h2>${article.Articlename}</h2>
+    <img src="${article.ArticlePicture}" alt="${article.Articlename}">
+    <input type="file" accept="image/*" style="display: none;">
+    <p>${article.ArticleDescription}</p>
+  `;
+
+  const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.textContent = 'Delete';
+  deleteButton.classList.add('my-button');
+  deleteButton.addEventListener('click', () => {
+    const index = storedArticles.findIndex(a => a.Articlename === article.Articlename);
+    if (index !== -1) {
+      storedArticles.splice(index, 1);
+      localStorage.setItem('articles', JSON.stringify(storedArticles));
+      articleElement.remove();
+    }
+  });
+
+  const editButton = document.createElement('button');
+  editButton.setAttribute('type', 'button');
+  editButton.textContent = 'Edit';
+  editButton.classList.add('my-button2');
+  editButton.addEventListener('click', () => {
+    articleElement.querySelectorAll('h2, img, p').forEach(element => {
+      element.setAttribute('contenteditable', true);
+      element.classList.add('editable');
+    });
+    saveButton.style.display = 'inline-block';
+    editButton.style.display = 'none';
+    isEditing = true; // Set isEditing to true
+
+    const imageInput = articleElement.querySelector('input[type="file"]');
+    articleElement.addEventListener('click', event => {
+      if (isEditing && event.target === articleElement.querySelector('img')) {
+        imageInput.click();
+      }
+    });
+
+    imageInput.addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+          const imageSrc = reader.result;
+          articleElement.querySelector('img').setAttribute('src', imageSrc);
+        });
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+
+  const saveButton = document.createElement('button');
+  saveButton.setAttribute('type', 'button');
+  saveButton.textContent = 'Save';
+  saveButton.classList.add('my-button1');
+  saveButton.style.display = 'none';
+  saveButton.addEventListener('click', () => {
+    article.Articlename = articleElement.querySelector('h2').textContent;
+    article.ArticlePicture = articleElement.querySelector('img').getAttribute('src');
+    article.ArticleDescription = articleElement.querySelector('p').textContent;
+    localStorage.setItem('articles', JSON.stringify(storedArticles));
+    articleElement.querySelectorAll('h2, img, p').forEach(element => {
+      element.setAttribute('contenteditable', false);
+      element.classList.remove('editable');
+    });
+    saveButton.style.display = 'none';
+    editButton.style.display = 'inline-block';
+    alert('Article saved!');
+  });
+
+  articleElement.appendChild(deleteButton);
+  articleElement.appendChild(editButton);
+  articleElement.appendChild(saveButton);
+  articleList.appendChild(articleElement);
+});
+
+
+  
+    </script>
+    </section>
+    
+</body>
+</html>
+
+<!--
+
+<div class="articlerectangle">
+         
+    
+    
+    <img class ="article1" src="christin-hume-mfB1B1s4sMc-unsplash.jpg">
+    
+    <img class="article2" src="unsplash-NuFUbftUu_s-unsplash.jpg">
+   
+    <img class="article3 " src="kelly-sikkema-377gw1wN0Ic-unsplash.jpg">
+     <div class="delete">
+        <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+        <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+        <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+     </div>
+    <div class="modify">
+        <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+        <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+        <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+    </div>
+    <div class="keep">
+    <iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+    <iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+    <iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+</div>
+
+<div class="delete1">
+    <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+    <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+    <iconify-icon icon="material-symbols:delete-outline-sharp"></iconify-icon>
+ </div>
+<div class="modify1">
+    <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+    <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+    <iconify-icon icon="icon-park-outline:modify"></iconify-icon>
+</div>
+<div class="keep1">
+<iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+<iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+<iconify-icon icon="material-symbols:bookmark-remove"></iconify-icon>
+</div>
+
+     
+    <img class ="article4" src="christina-wocintechchat-com-9-ohfp-Dicg-unsplash.jpg">
+    <img class ="article5" src="article5.jfif">
+    <img class ="article6" src="article1.jfif">
+    
+    
+
+-->
+
+</body>
+</html>
+
+
+    
+</div>
+</section>

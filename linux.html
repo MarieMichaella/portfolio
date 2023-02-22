@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarieMichaellaMyPortfolio</title>
+    <link rel="stylesheet" href="linux.css">
+</head>
+<body>
+
+    <div class="blogpart">
+    
+        <div class="rectblog"></div>
+    
+        <span class="blogword">Blog</span>
+        <div class="scroll">
+            <div class="home"><a href="index.html"> <iconify-icon icon="material-symbols:arrow-back-ios-new" style="color: #c76a07;"></iconify-icon></a></div>
+    
+        </div>
+        <div class="category">
+        <div class="html"><p id="htmlwords"><a href="html.html">HTML</a></p></div>
+        <div class="css"><p id="csswords"><a href="index4.html">CSS</a></p></div>
+        <div class="sql"><p id="sqlwords"><a href="Linux.html">Linux</a></p></div>
+    </div>
+
+    <div class="articlerect">
+    <div id="article-list">
+      
+    </div>
+   
+ 
+    <script>
+     
+   const storedArticles = JSON.parse(localStorage.getItem('articles'));
+
+
+const articleList = document.getElementById('article-list');
+storedArticles.forEach(article => {
+  const articleElement = document.createElement('div');
+
+  if (article.ArticleCategory === 'Linux') {
+
+    const rectangleElement = document.createElement('div');
+    rectangleElement.className = 'gallery-item-rectangle';
+    articleElement.insertAdjacentElement('beforeend', rectangleElement);
+    article.Element = "gallery-item"
+    articleElement.innerHTML += `
+    <span class="recta">
+      <h2 class="articlename">${article.Articlename}</h2>
+      <div class="articlepicture" >
+      <img src="${article.ArticlePicture}">
+      </div>
+      <p class="articledescription">${article.ArticleDescription}</p>
+      <div class="read-more-btn">
+      <button onclick="viewArticle('${article.id}')">Read More</button>
+      </div>
+      
+    </span>
+    `;
+    articleList.appendChild(articleElement);
+  }
+});
+
+
+
+function viewArticle(id) {
+  const article = storedArticles.find(article => article.id === id);
+  if (article) {
+    localStorage.setItem('articleName', article.Articlename);
+    localStorage.setItem('articlePicture', article.ArticlePicture);
+    localStorage.setItem('articleMessage', article.message);
+    window.location.href = 'article-page.html';
+  } else {
+    console.log(`Article with id ${id} not found`);
+  }
+}
+
+
+
+    
+    </script>
+   
+  </div>
+    
+</body>
+</html>
